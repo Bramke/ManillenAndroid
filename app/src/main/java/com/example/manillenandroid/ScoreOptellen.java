@@ -1,7 +1,10 @@
 package com.example.manillenandroid;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -35,10 +38,19 @@ public class ScoreOptellen extends AppCompatActivity {
         team1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
-                totaalTeam1 = totaalTeam1 + scoreRonde;
-                scoreTeam1.setText("Team1: \n" + String.valueOf(totaalTeam1));
-
+                    if (Integer.parseInt(scoreDezeRonde.getText().toString()) > 0){
+                        int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
+                        totaalTeam1 = totaalTeam1 + scoreRonde;
+                        scoreTeam1.setText("Team1: \n" + String.valueOf(totaalTeam1));
+                    }else {
+                        //POPUP KADER MET OK KNOP
+                        Builder scoreTeLaag = new Builder(ScoreOptellen.this);
+                        scoreTeLaag.setTitle("Let Op!");
+                        scoreTeLaag.setMessage("De ingevulde score moet boven 0 liggen.");
+                        scoreTeLaag.setPositiveButton("OK!",null);
+                        scoreTeLaag.show();
+                    }
+                }
             }
 
 
@@ -46,13 +58,20 @@ public class ScoreOptellen extends AppCompatActivity {
         team2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
-                totaalTeam2 = totaalTeam2 + scoreRonde;
-                scoreTeam2.setText("Team1: \n" + String.valueOf(totaalTeam2));
+                if (Integer.parseInt(scoreDezeRonde.getText().toString()) > 0){
+                    int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
+                    totaalTeam2 = totaalTeam2 + scoreRonde;
+                    scoreTeam2.setText(String.valueOf(totaalTeam2));
+                }else {
+                    //POPUP KADER MET OK KNOP
+                    Builder scoreTeLaag = new Builder(ScoreOptellen.this);
+                    scoreTeLaag.setTitle("Let Op!");
+                    scoreTeLaag.setMessage("De ingevulde score moet boven 0 liggen");
+                    scoreTeLaag.setPositiveButton("OK!",null);
+                    scoreTeLaag.show();
+                }
 
             }
-
-
         });
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
