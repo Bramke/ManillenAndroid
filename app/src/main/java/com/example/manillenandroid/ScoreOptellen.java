@@ -1,7 +1,8 @@
 package com.example.manillenandroid;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ public class ScoreOptellen extends AppCompatActivity {
     private EditText scoreDezeRonde;
     private Button team1;
     private Button team2;
+    private Button stop;
     private int totaalTeam1;
     private int totaalTeam2;
 
@@ -28,6 +30,7 @@ public class ScoreOptellen extends AppCompatActivity {
         scoreTeam2 = findViewById(R.id.tvTeam2);
         team1.setText(String.valueOf(MainActivity.naamTeam1));
         team2.setText(String.valueOf(MainActivity.naamTeam2));
+        stop = findViewById(R.id.btn_stop);
 
         team1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,5 +54,23 @@ public class ScoreOptellen extends AppCompatActivity {
 
 
         });
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openStartscherm();
+                totaalTeam1 = 0;
+                totaalTeam2 = 0;
+                MainActivity.naamTeam1 = null;
+                MainActivity.naamTeam2 = null;
+                scoreTeam1.setText("Team1: \n");
+                scoreTeam2.setText("Team2: \n");
+            }
+        });
+
+    }
+
+    private void openStartscherm() {
+        Intent openStartschermKlasse = new Intent(this, MainActivity.class);
+        startActivity(openStartschermKlasse);
     }
 }
