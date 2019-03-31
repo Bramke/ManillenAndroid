@@ -40,7 +40,7 @@ public class ScoreOptellen extends AppCompatActivity {
                         int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                         totaalTeam1 = totaalTeam1 + scoreRonde;
                         scoreTeam1.setText(String.valueOf(totaalTeam1));
-                        if (totaalTeam1 >= MainActivity.maxScoreTotaal) {
+                        if (totaalTeam1 >= Instellingen.maxScoreTotaal) {
                             Builder gewonnenTeam1 = new Builder(ScoreOptellen.this);
                             gewonnenTeam1.setTitle("Gewonnen");
                             gewonnenTeam1.setMessage("Gefeliciteerd team " + MainActivity.naamTeam1 + " je hebt gewonnen!");
@@ -72,7 +72,7 @@ public class ScoreOptellen extends AppCompatActivity {
                     int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                     totaalTeam2 = totaalTeam2 + scoreRonde;
                     scoreTeam2.setText(String.valueOf(totaalTeam2));
-                    if (totaalTeam2 >= MainActivity.maxScoreTotaal) {
+                    if (totaalTeam2 >= Instellingen.maxScoreTotaal) {
                         Builder gewonnenTeam2 = new Builder(ScoreOptellen.this);
                         gewonnenTeam2.setTitle("Gewonnen");
                         gewonnenTeam2.setMessage("Gefeliciteerd team " + MainActivity.naamTeam2 + " je hebt gewonnen!");
