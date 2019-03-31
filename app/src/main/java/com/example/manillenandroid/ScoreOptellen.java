@@ -1,9 +1,7 @@
 package com.example.manillenandroid;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,7 +24,7 @@ public class ScoreOptellen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_optellen);
 
-        scoreDezeRonde = findViewById(R.id.etScoreRonde);
+        scoreDezeRonde = (EditText) findViewById(R.id.etScoreRonde);
         team1 = findViewById(R.id.btnTeam1);
         team2 = findViewById(R.id.btnTeam2);
         scoreTeam1 = findViewById(R.id.tvTeam1);
@@ -41,8 +39,23 @@ public class ScoreOptellen extends AppCompatActivity {
                     if (Integer.parseInt(scoreDezeRonde.getText().toString()) > 0){
                         int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                         totaalTeam1 = totaalTeam1 + scoreRonde;
-                        scoreTeam1.setText("Team1: \n" + String.valueOf(totaalTeam1));
-                    }else {
+                        scoreTeam1.setText(String.valueOf(totaalTeam1));
+                        if (totaalTeam1 >= MainActivity.maxScoreTotaal) {
+                            Builder gewonnenTeam1 = new Builder(ScoreOptellen.this);
+                            gewonnenTeam1.setTitle("Gewonnen");
+                            gewonnenTeam1.setMessage("Gefeliciteerd team " + MainActivity.naamTeam1 + " je hebt gewonnen!");
+                            gewonnenTeam1.setPositiveButton("OK!",null);
+                            gewonnenTeam1.show();
+                        }
+                        //Geprobeerd om lege score te voorkomen, werkt niet.
+                   // }else if (scoreDezeRonde.getText().toString().trim().isEmpty()){
+                   //     Builder scoreNietIngevuld = new Builder(ScoreOptellen.this);
+                   //     scoreNietIngevuld.setTitle("Let Op!");
+                   //     scoreNietIngevuld.setMessage("De ingevulde score moet boven 0 liggen.");
+                   //     scoreNietIngevuld.setPositiveButton("OK!",null);
+                   //     scoreNietIngevuld.show();
+                    }
+                    else {
                         //POPUP KADER MET OK KNOP
                         Builder scoreTeLaag = new Builder(ScoreOptellen.this);
                         scoreTeLaag.setTitle("Let Op!");
@@ -51,10 +64,7 @@ public class ScoreOptellen extends AppCompatActivity {
                         scoreTeLaag.show();
                     }
                 }
-            }
-
-
-        });
+            });
         team2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +72,14 @@ public class ScoreOptellen extends AppCompatActivity {
                     int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                     totaalTeam2 = totaalTeam2 + scoreRonde;
                     scoreTeam2.setText(String.valueOf(totaalTeam2));
-                }else {
+                    if (totaalTeam2 >= MainActivity.maxScoreTotaal) {
+                        Builder gewonnenTeam2 = new Builder(ScoreOptellen.this);
+                        gewonnenTeam2.setTitle("Gewonnen");
+                        gewonnenTeam2.setMessage("Gefeliciteerd team " + MainActivity.naamTeam2 + " je hebt gewonnen!");
+                        gewonnenTeam2.setPositiveButton("OK!",null);
+                        gewonnenTeam2.show();
+                    }
+                } else {
                     //POPUP KADER MET OK KNOP
                     Builder scoreTeLaag = new Builder(ScoreOptellen.this);
                     scoreTeLaag.setTitle("Let Op!");
