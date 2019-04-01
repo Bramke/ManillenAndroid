@@ -27,8 +27,8 @@ public class ScoreOptellen extends AppCompatActivity {
         scoreDezeRonde = (EditText) findViewById(R.id.etScoreRonde);
         team1 = findViewById(R.id.btnTeam1);
         team2 = findViewById(R.id.btnTeam2);
-        scoreTeam1 = findViewById(R.id.tvTeam1);
-        scoreTeam2 = findViewById(R.id.tvTeam2);
+        scoreTeam1 = findViewById(R.id.tvTeam1Score);
+        scoreTeam2 = findViewById(R.id.tvTeam2Score);
         team1.setText(String.valueOf(MainActivity.naamTeam1));
         team2.setText(String.valueOf(MainActivity.naamTeam2));
         stop = findViewById(R.id.btn_stop);
@@ -40,7 +40,7 @@ public class ScoreOptellen extends AppCompatActivity {
                         int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                         totaalTeam1 = totaalTeam1 + scoreRonde;
                         scoreTeam1.setText(String.valueOf(totaalTeam1));
-                        if (totaalTeam1 >= Instellingen.maxScoreTotaal) {
+                        if (totaalTeam1 >= MainActivity.maxScoreTotaal) {
                             Builder gewonnenTeam1 = new Builder(ScoreOptellen.this);
                             gewonnenTeam1.setTitle("Gewonnen");
                             gewonnenTeam1.setMessage("Gefeliciteerd team " + MainActivity.naamTeam1 + " je hebt gewonnen!");
@@ -72,7 +72,7 @@ public class ScoreOptellen extends AppCompatActivity {
                     int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                     totaalTeam2 = totaalTeam2 + scoreRonde;
                     scoreTeam2.setText(String.valueOf(totaalTeam2));
-                    if (totaalTeam2 >= Instellingen.maxScoreTotaal) {
+                    if (totaalTeam2 >= MainActivity.maxScoreTotaal) {
                         Builder gewonnenTeam2 = new Builder(ScoreOptellen.this);
                         gewonnenTeam2.setTitle("Gewonnen");
                         gewonnenTeam2.setMessage("Gefeliciteerd team " + MainActivity.naamTeam2 + " je hebt gewonnen!");
