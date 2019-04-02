@@ -34,10 +34,20 @@ public class ScoreOptellen extends AppCompatActivity {
         team2.setText(String.valueOf(MainActivity.naamTeam2));
         stop = findViewById(R.id.btn_stop);
 
+        final Builder scoreTeLaag = new Builder(ScoreOptellen.this);
+        scoreTeLaag.setTitle("Let Op!");
+        scoreTeLaag.setMessage("De ingevulde score moet boven 0 liggen.");
+        scoreTeLaag.setPositiveButton("OK!",null);
+
+        final Builder scoreTeLaag2 = new Builder(ScoreOptellen.this);
+        scoreTeLaag2.setTitle("Let Op!");
+        scoreTeLaag2.setMessage("De ingevulde score moet boven 0 liggen");
+        scoreTeLaag2.setPositiveButton("OK!",null);
+
         team1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (Integer.parseInt(scoreDezeRonde.getText().toString()) > 0){
+                    if (Integer.parseInt(scoreDezeRonde.getText().toString()) > 0 || scoreDezeRonde.getText().toString().equals("")) {
                         int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                         totaalTeam1 = totaalTeam1 + scoreRonde;
                         scoreTeam1.setText(String.valueOf(totaalTeam1));
@@ -70,10 +80,6 @@ public class ScoreOptellen extends AppCompatActivity {
                     }
                     else {
                         //POPUP KADER MET OK KNOP
-                        Builder scoreTeLaag = new Builder(ScoreOptellen.this);
-                        scoreTeLaag.setTitle("Let Op!");
-                        scoreTeLaag.setMessage("De ingevulde score moet boven 0 liggen.");
-                        scoreTeLaag.setPositiveButton("OK!",null);
                         scoreTeLaag.show();
                     }
                 }
@@ -106,11 +112,7 @@ public class ScoreOptellen extends AppCompatActivity {
                     }
                 } else {
                     //POPUP KADER MET OK KNOP
-                    Builder scoreTeLaag = new Builder(ScoreOptellen.this);
-                    scoreTeLaag.setTitle("Let Op!");
-                    scoreTeLaag.setMessage("De ingevulde score moet boven 0 liggen");
-                    scoreTeLaag.setPositiveButton("OK!",null);
-                    scoreTeLaag.show();
+                    scoreTeLaag2.show();
                 }
 
             }
