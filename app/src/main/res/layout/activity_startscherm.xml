@@ -71,10 +71,11 @@
         android:id="@+id/btn_submitNaam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="33dp"
         android:background="@drawable/start_knop"
-        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintBottom_toTopOf="@+id/btn_databaseIn"
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView" />
 
     <TextView
@@ -101,6 +102,19 @@
         android:background="@drawable/tandwiel"
         app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView" />
+
+    <Button
+        android:id="@+id/btn_databaseIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Inladen"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:background="@drawable/team_2_knop"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView" />
 
 
 </android.support.constraint.ConstraintLayout>
