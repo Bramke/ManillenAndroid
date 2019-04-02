@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class Instellingen extends AppCompatActivity {
-    public static int maxScoreTotaal;
+    public static int maxScoreTotaal = 120;
     private EditText et_maxScore;
     private Button opslaanInstellingen;
 
@@ -16,8 +16,8 @@ public class Instellingen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
         et_maxScore = findViewById(R.id.et_maxScore);
-        maxScoreTotaal = 120;
         opslaanInstellingen = findViewById(R.id.btn_opslaanInstellingen);
         opslaanInstellingen.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,5 +1,6 @@
 package com.example.manillenandroid;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog.Builder;
@@ -40,11 +41,23 @@ public class ScoreOptellen extends AppCompatActivity {
                         int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                         totaalTeam1 = totaalTeam1 + scoreRonde;
                         scoreTeam1.setText(String.valueOf(totaalTeam1));
-                        if (totaalTeam1 >= MainActivity.maxScoreTotaal) {
+                        if (totaalTeam1 >= Instellingen.maxScoreTotaal) {
                             Builder gewonnenTeam1 = new Builder(ScoreOptellen.this);
                             gewonnenTeam1.setTitle("Gewonnen");
                             gewonnenTeam1.setMessage("Gefeliciteerd team " + MainActivity.naamTeam1 + " je hebt gewonnen!");
                             gewonnenTeam1.setPositiveButton("OK!",null);
+                            gewonnenTeam1.setNeutralButton("Reset", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    openStartscherm();
+                                    totaalTeam1 = 0;
+                                    totaalTeam2 = 0;
+                                    MainActivity.naamTeam1 = null;
+                                    MainActivity.naamTeam2 = null;
+                                    scoreTeam1.setText("Team1: \n");
+                                    scoreTeam2.setText("Team2: \n");
+                                }
+                            });
                             gewonnenTeam1.show();
                         }
                         //Geprobeerd om lege score te voorkomen, werkt niet.
@@ -72,11 +85,23 @@ public class ScoreOptellen extends AppCompatActivity {
                     int scoreRonde = Integer.parseInt(scoreDezeRonde.getText().toString());
                     totaalTeam2 = totaalTeam2 + scoreRonde;
                     scoreTeam2.setText(String.valueOf(totaalTeam2));
-                    if (totaalTeam2 >= MainActivity.maxScoreTotaal) {
+                    if (totaalTeam2 >= Instellingen.maxScoreTotaal) {
                         Builder gewonnenTeam2 = new Builder(ScoreOptellen.this);
                         gewonnenTeam2.setTitle("Gewonnen");
                         gewonnenTeam2.setMessage("Gefeliciteerd team " + MainActivity.naamTeam2 + " je hebt gewonnen!");
                         gewonnenTeam2.setPositiveButton("OK!",null);
+                        gewonnenTeam2.setNeutralButton("Reset", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                openStartscherm();
+                                totaalTeam1 = 0;
+                                totaalTeam2 = 0;
+                                MainActivity.naamTeam1 = null;
+                                MainActivity.naamTeam2 = null;
+                                scoreTeam1.setText("Team1: \n");
+                                scoreTeam2.setText("Team2: \n");
+                            }
+                        });
                         gewonnenTeam2.show();
                     }
                 } else {
@@ -105,7 +130,7 @@ public class ScoreOptellen extends AppCompatActivity {
 
     }
 
-    private void openStartscherm() {
+    public void openStartscherm() {
         Intent openStartschermKlasse = new Intent(this, MainActivity.class);
         startActivity(openStartschermKlasse);
     }
